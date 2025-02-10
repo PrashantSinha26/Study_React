@@ -4,7 +4,6 @@
 
 //             root.render(heading); */
 
-
 // // If we want to create a nested like structure
 
 // /* const parent =
@@ -33,7 +32,6 @@
 // console.log(parent);
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 // root.render(parent); */
-
 
 // /* // React Element
 
@@ -74,7 +72,7 @@
 // const HeadingComponent = () =>(
 //     <div id="container">
 //     <Title />
-//     {number}                   
+//     {number}
 //     <h1 className="heading">Welcome to react World</h1>
 //     </div>
 // );

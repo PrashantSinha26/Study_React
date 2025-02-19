@@ -1,14 +1,13 @@
 import RestaurantCard from './RestaurantCard';
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState('');
-
-  console.log('kp1');
 
   useEffect(() => {
     fetchData();
@@ -20,7 +19,6 @@ const Body = () => {
     );
 
     const json = await data.json();
-    console.log('ps1', json?.data?.success?.cards[5]?.card?.card?.info);
 
     const info1 =
       json?.data?.success?.cards[5]?.card?.card?.info[0]?.stackedDetails
@@ -76,9 +74,9 @@ const Body = () => {
           onClick={() => {
             //Filter Logic
             const filteredList = listOfRestaurant.filter(
-              (res) => res.info.rating.value > 4
+              (res) => res.info.rating.value < 4.5
             );
-            setFilteredRestaurant(filteredList);
+            setListOfRestaurant(filteredList);
           }}
         >
           Top rated Restaurants
@@ -86,7 +84,12 @@ const Body = () => {
       </div>
       <div className='res-container'>
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant} /> //LOOP for calling a resturant
+          <Link
+            key={restaurant.info.id}
+            to={'/restaurants/' + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link> //LOOP for calling a resturant
         ))}
       </div>
     </div>

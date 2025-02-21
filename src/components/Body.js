@@ -2,6 +2,7 @@ import RestaurantCard from './RestaurantCard';
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import useOnlineStatus from '../utils/useOnlineStatus';
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -21,21 +22,24 @@ const Body = () => {
     const json = await data.json();
 
     const info1 =
-      json?.data?.success?.cards[5]?.card?.card?.info[0]?.stackedDetails
+      json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
     const info2 =
-      json?.data?.success?.cards[5]?.card?.card?.info[1]?.stackedDetails
+      json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
     const info3 =
-      json?.data?.success?.cards[5]?.card?.card?.info[2]?.stackedDetails
+      json?.data?.success?.cards[4]?.card?.card?.info[2]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
 
     setListOfRestaurant([...info1, ...info2, ...info3]);
     setFilteredRestaurant([...info1, ...info2, ...info3]);
-
-    console.log('ps2', filteredRestaurant);
   };
 
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) return <h1>Looks likes your internet is down</h1>;
+
+  
   // Shimmer UI......
   // if(listOfRestaurant.length === 0){
   //     return <Shimmer />

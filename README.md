@@ -64,3 +64,80 @@ It's a normal utility JavaScript function which is given by React and it is writ
     It will call when the component is unmount.
     Unmount - When the component is disappear from the html/webpage/API. As we jump to the next page. 
   }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+}
+
+.logo {
+  width: 200px;
+}
+
+.navigation-item {
+  padding-right: 40px;
+}
+
+.navigation-item > ul {
+  font-size: 20px;
+  display: flex;
+  list-style-type: none;
+}
+
+.navigation-item > ul > li {
+  padding: 20px;
+  margin: 5px;
+}
+
+.res-card {
+  width: 200px;
+  height: 320px;
+  padding: 5px;
+  margin: 10px;
+}
+
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.res-card:hover {
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.filter-btn {
+  margin: 10px;
+  cursor: pointer;
+}
+
+.res-logo {
+  width: 100%;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shimmer-card {
+  margin: 20px;
+  height: 300px;
+  width: 200px;
+  background-color: #f0f0f0;
+}
+
+.login {
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+}
+
+.user-card {
+  padding: 10px;
+  border: 1px solid black;
+}
+

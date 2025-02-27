@@ -22,7 +22,7 @@ const Body = () => {
     const json = await data.json();
 
     const info1 =
-      json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
+      json?.data?.success?.cards[4]?.card?.card?.info[0]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
     const info2 =
       json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
@@ -39,7 +39,6 @@ const Body = () => {
 
   if (onlineStatus === false) return <h1>Looks likes your internet is down</h1>;
 
-  
   // Shimmer UI......
   // if(listOfRestaurant.length === 0){
   //     return <Shimmer />
@@ -49,17 +48,19 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className='body'>
-      <div className='filter'>
-        <div className='search'>
+      <div className='filter flex'>
+        <div className='search m-3 p-3'>
           <input
             type='text'
-            className='search-box'
+            className='border border-solid border-black '
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
+
           <button
+            className='px-3 py-1 bg-green-100 m-3 rounded-lg'
             onClick={() => {
               //Filter the restaurant cards and update the UI
               //Search Text
@@ -72,27 +73,27 @@ const Body = () => {
           >
             Search
           </button>
-        </div>
-        <button
-          className='filter-btn'
-          onClick={() => {
-            //Filter Logic
-            const filteredList = listOfRestaurant.filter(
-              (res) => res.info.rating.value < 4.5
-            );
-            setListOfRestaurant(filteredList);
-          }}
-        >
-          Top rated Restaurants
-        </button>
-      </div>
-      <div className='res-container'>
-        {filteredRestaurant.map((restaurant) => (
-          <Link
-            key={restaurant.info.id}
-            to={'/restaurants/' + restaurant.info.id}
+          <button
+            className='px-3 py-1 bg-gray-100 m-3'
+            onClick={() => {
+              //Filter Logic
+              const filteredList = listOfRestaurant.filter(
+                (res) => res.info.rating.value > 4
+              );
+              setListOfRestaurant(filteredList);
+            }}
           >
-            <RestaurantCard resData={restaurant} />
+            Top rated Restaurants
+          </button>
+        </div>
+      </div>
+      <div className='flex flex-wrap hover hover:bg-amber-200:'>
+        {filteredRestaurant.map((restaurants) => (
+          <Link
+            key={restaurants.info.id}
+            to={'/"restaurants/' + restaurants.info.id}
+          >
+            <RestaurantCard resData ={restaurants} />
           </Link> //LOOP for calling a resturant
         ))}
       </div>

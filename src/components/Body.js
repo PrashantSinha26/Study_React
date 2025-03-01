@@ -1,4 +1,4 @@
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard, { withGirf } from './RestaurantCard';
 import { useState, useEffect } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,8 @@ import useOnlineStatus from '../utils/useOnlineStatus';
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+
+  const ResturantCardGIRF = withGirf(RestaurantCard);
 
   const [searchText, setSearchText] = useState('');
 
@@ -65,10 +67,10 @@ const Body = () => {
               //Filter the restaurant cards and update the UI
               //Search Text
 
-              const filteredRestaurant = listOfRestaurant.filter((res) =>
+              const filteredList = listOfRestaurant.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFilteredRestaurant(filteredRestaurant);
+              setFilteredRestaurant(filteredList);
             }}
           >
             Search
@@ -78,9 +80,10 @@ const Body = () => {
             onClick={() => {
               //Filter Logic
               const filteredList = listOfRestaurant.filter(
-                (res) => res.info.rating.value > 4
+                (res) => res.info.rating.value > 4.5
               );
-              setListOfRestaurant(filteredList);
+
+              setFilteredRestaurant(filteredList);
             }}
           >
             Top rated Restaurants
@@ -91,9 +94,17 @@ const Body = () => {
         {filteredRestaurant.map((restaurants) => (
           <Link
             key={restaurants.info.id}
-            to={'/"restaurants/' + restaurants.info.id}
+            to={'/restaurants/' + restaurants.info.id}
           >
-            <RestaurantCard resData ={restaurants} />
+            {
+              //Logic to enhance the card component over ribbon GIRF text
+
+              restaurants.info.ribbon ? (
+                <ResturantCardGIRF resData={restaurants} />
+              ) : (
+                <RestaurantCard resData={restaurants} />
+              )
+            }
           </Link> //LOOP for calling a resturant
         ))}
       </div>

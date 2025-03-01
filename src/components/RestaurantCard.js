@@ -1,7 +1,7 @@
 import { CDN_URL } from '../utils/constants';
 
 const RestaurantCard = (props) => {
-  const { resData } = props; 
+  const { resData } = props;
 
   const { name, cuisines, rating, costForTwo, mediaFiles } = resData?.info; //Destructuring of Data
   return (
@@ -23,6 +23,17 @@ const RestaurantCard = (props) => {
 
 //Input - ResturantCard - ResturantCardGIRFSpecial
 
+export const withGirf = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className='absolute bg-red-300 text-black m-1 p-1 rounded-e-lg'>GIRF Special</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
 
+//Change END
 
 export default RestaurantCard;

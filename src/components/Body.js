@@ -68,7 +68,7 @@ const Body = () => {
               //Search Text
 
               const filteredList = listOfRestaurant.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                res?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
               );
               setFilteredRestaurant(filteredList);
             }}
@@ -80,7 +80,7 @@ const Body = () => {
             onClick={() => {
               //Filter Logic
               const filteredList = listOfRestaurant.filter(
-                (res) => res.info.rating.value > 4.5
+                (res) => res?.info?.rating?.value > 4.5
               );
 
               setFilteredRestaurant(filteredList);
@@ -93,8 +93,8 @@ const Body = () => {
       <div className='flex flex-wrap hover hover:bg-amber-200:'>
         {filteredRestaurant.map((restaurants) => (
           <Link
-            key={restaurants.info.id}
-            to={'/restaurants/' + restaurants.info.id}
+            key={restaurants?.info?.id}
+            to={'/restaurants/' + restaurants?.info?.id}
           >
             {
               //Logic to enhance the card component over ribbon GIRF text

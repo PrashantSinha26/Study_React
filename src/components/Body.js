@@ -1,8 +1,9 @@
 import RestaurantCard, { withGirf } from './RestaurantCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -29,12 +30,14 @@ const Body = () => {
     const info2 =
       json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
-    const info3 =
-      json?.data?.success?.cards[4]?.card?.card?.info[2]?.stackedDetails
-        ?.dineoutRestaurants?.restaurants;
 
-    setListOfRestaurant([...info1, ...info2, ...info3]);
-    setFilteredRestaurant([...info1, ...info2, ...info3]);
+    console.log('ps1', info1, info2);
+
+    /*const info3 =
+      json?.data?.success?.cards[4]?.card?.card;*/
+
+    setListOfRestaurant([...info1, ...info2]);
+    setFilteredRestaurant([...info1, ...info2]);
   };
 
   const onlineStatus = useOnlineStatus();
@@ -45,6 +48,8 @@ const Body = () => {
   // if(listOfRestaurant.length === 0){
   //     return <Shimmer />
   // }
+
+  const { loggedInuser,setUserName } = useContext(UserContext);
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
@@ -68,13 +73,17 @@ const Body = () => {
               //Search Text
 
               const filteredList = listOfRestaurant.filter((res) =>
-                res?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
+                res?.info?.name
+                  ?.toLowerCase()
+                  .includes(searchText.toLowerCase())
               );
               setFilteredRestaurant(filteredList);
             }}
           >
             Search
           </button>
+        </div>
+        <div className='search m-4 p-4 flex items-center'>
           <button
             className='px-3 py-1 bg-gray-100 m-3'
             onClick={() => {
@@ -88,6 +97,15 @@ const Body = () => {
           >
             Top rated Restaurants
           </button>
+        </div>
+
+        <div className='search m-4 p-4 flex items-center'>
+          <label>UserName:</label>
+          <input
+            className='border border-black bg-pink-100 px-3 py-1'
+            value={loggedInuser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className='flex flex-wrap hover hover:bg-amber-200:'>

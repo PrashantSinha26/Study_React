@@ -65,6 +65,7 @@ It's a normal utility JavaScript function which is given by React and it is writ
     Unmount - When the component is disappear from the html/webpage/API. As we jump to the next page. 
   }
 
+# CSS Code Start( When not using Tailwind )
 .header {
   display: flex;
   justify-content: space-between;
@@ -140,4 +141,18 @@ It's a normal utility JavaScript function which is given by React and it is writ
   padding: 10px;
   border: 1px solid black;
 }
+# CSS Code End
 
+# Redux Toolkit
+
+- Installing @reduxjs/toolkit and React Redux
+- Built our store
+- Connect store to an app
+- Slice (cartSlice) 
+- Dispatch(action)
+- Selector
+
+# Types of Testing (Developer can do)
+- Unit Testing
+- Intregration Testing
+- End to End Testing [ e2e Testing ]

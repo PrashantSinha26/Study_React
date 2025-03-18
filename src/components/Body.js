@@ -31,7 +31,6 @@ const Body = () => {
       json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
 
-    console.log('ps1', info1, info2);
 
     /*const info3 =
       json?.data?.success?.cards[4]?.card?.card;*/

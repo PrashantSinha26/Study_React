@@ -31,7 +31,6 @@ const Body = () => {
       json?.data?.success?.cards[4]?.card?.card?.info[1]?.stackedDetails
         ?.dineoutRestaurants?.restaurants;
 
-
     /*const info3 =
       json?.data?.success?.cards[4]?.card?.card;*/
 
@@ -48,7 +47,7 @@ const Body = () => {
   //     return <Shimmer />
   // }
 
-  const { loggedInuser,setUserName } = useContext(UserContext);
+  const { loggedInuser, setUserName } = useContext(UserContext);
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
@@ -58,6 +57,7 @@ const Body = () => {
         <div className='search m-3 p-3'>
           <input
             type='text'
+            data-testid='searchInput'
             className='border border-solid border-black '
             value={searchText}
             onChange={(e) => {
